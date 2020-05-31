@@ -1,0 +1,66 @@
+/* #c3272f vermeio */
+
+label {
+    font-size: medium;
+}
+
+input {
+    border-radius: 4px;
+    border: 1px solid #c4c4c4;
+    font-size: medium;
+    margin-bottom: 12%!important;
+}
+
+.htmlVazio {
+    margin-top: 45%;
+    margin-bottom: 35%;
+}
+
+.center {
+    margin-left: 28%;
+}
+
+.button {
+    background-color: #330000 !important;
+    font-size: medium;
+    color: #ffffff !important;
+    margin-top: 5%;
+}
+
+.button:hover {
+    background-color: #c3272f !important;
+    transition: 0.2s;
+    border: 1px solid #330000;
+}
+
+
+/* caixinhas */
+.erroBox {
+    background-color: #c3272f;
+    color: #ffffff;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 5px;
+    padding: 5%;
+    text-align: center;
+}
+
+.certoBox {
+    background-color: #00bd6e;
+    color: #ffffff;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 5px;
+    padding: 5%;
+    text-align: center;
+}
+
+.notifica{
+    border-radius: 5px;
+    background-color: #6e6e6e;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 5%;
+    text-align: center;
+    color: #ffffff;
+}
