@@ -1,0 +1,22 @@
+<div>
+
+    <div class="topp">
+        <label style="font-size: large;">Cadastro de</label><br>
+        <label style="font-size: larger;">Categoria</label>
+    </div>
+
+    <div>
+        <div class="htmlVazio">
+            <label for="nome">Nome da Categoria</label><br>
+            <input type="text" #nome><br>
+
+            <button class="btn button center" (click)="register()">Cadastrar</button>
+        </div>
+    </div>
+    <div style="overflow: auto;" *ngIf="erro" class="erroBox">
+        {{ erro }}
+    </div>
+    <div style="overflow: auto;" *ngIf="msg" class="certoBox">
+        {{ msg }}
+    </div>
+</div>

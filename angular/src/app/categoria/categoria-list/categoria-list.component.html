@@ -1,0 +1,25 @@
+<div>
+    <div>
+        <div class="row">
+            <div>
+                <label class="title">Lista de Categorias</label><br>
+                <span>e seu número de profissionais</span>
+            </div>
+            <div class="col"></div>
+            <div class="col-1" style="float: right;margin-right: 2%;margin-top: 2%;">
+                <a href="categoria/nova" style="font-size: 15px;" class="btn button"> +
+                </a>
+            </div>
+            <div style="overflow: auto;" *ngIf="erro" class="erroBox">
+                {{ erro }}
+            </div>
+        </div>
+        <div style="margin-top: 5%;" class="row" #lista>
+            <a *ngFor="let categoria of categorias" (click)="send(categoria.categoria)" class="col cardi"
+                routerLink="/prestador/lista" routerLinkActive="active">
+                <label>{{categoria.categoria}}</label><br>
+                <span>{{categoria.quantidade}}</span>
+            </a>
+        </div>
+    </div>
+</div>

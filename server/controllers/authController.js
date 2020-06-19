@@ -1,4 +1,5 @@
 const Usuario = require('../models/Usuario.js'),
+    Prestador = require('../models/Prestador.js'),
     bcrypt = require('bcrypt'),
     jwt = require('jsonwebtoken')
 
@@ -10,25 +11,25 @@ exports.login = (req, res, next) => {
     console.log(email, senha)
 
     if (!email || !senha) return res.status(401).send('Informe email ou senha')
-
+    //PASSA PELA COLLECTION DE USERS
     Usuario.findOne({ email }, (error, usuario) => {
         if (error) return next(error)
-        if (!usuario) return res.status(401).send('Usuário não encontrado')
-
+        if (!usuario) { return res.status(401).send('Usuário não encontrado') }
         //verifica hash da senha
         bcrypt.compare(senha, usuario.senha, (err, match) => {
-            if (!match) return res.status(401).send('Usuário não encontrado')
-
+            if (!match) { return res.status(401).send('Usuário não encontrado') }
             //gera token
             const token = jwt.sign({
                 usuario: {
-                    _id: usuario._id
+                    _id: usuario._id,
+                    roles: usuario.roles
                 }
             }, process.env.SECRET_JWT, { expiresIn: '1d' });
             res.json({
                 usuario: {
                     nome: usuario.nome,
-                    email: usuario.email
+                    email: usuario.email,
+                    roles: usuario.roles
                 },
                 token
             })

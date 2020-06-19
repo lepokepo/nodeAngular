@@ -1,1 +1,31 @@
-<p>user-register works!</p>
+<div>
+
+    <div class="topp">
+        <label style="font-size: large;">Cadastro de</label><br>
+        <label style="font-size: larger;">Usuário</label>
+    </div>
+
+    <div>
+        <div class="htmlVazio">
+            <label for="nome">Nome de Usuário</label><br>
+            <input type="text" #nome><br>
+
+            <label for="email">Email</label><br>
+            <input type="email" #email required><br>
+
+            <label for="senha">Senha</label><br>
+            <input type="password" #senha><br>
+
+            <label for="senhaConfirm">Confirmar Senha</label><br>
+            <input type="password" #senhaConfirm><br>
+
+            <button class="btn button center" (click)="register()">Cadastrar</button>
+        </div>
+    </div>
+    <div style="overflow: auto;" *ngIf="erro" class="erroBox">
+        {{ erro }}
+    </div>
+    <div style="overflow: auto;" *ngIf="msg" class="certoBox">
+        {{ msg }}
+    </div>
+</div>

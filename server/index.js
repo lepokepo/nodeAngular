@@ -6,7 +6,11 @@ const express = require('express'),
     cors = require('cors'),
     authVerify = require('./middlewares/authVerify'),
     authRoutes = require('./routes/authRoutes'),
+
     usuarioRoutes = require('./routes/usuarioRoutes'),
+    categoriaRoutes = require('./routes/categoriaRoutes'),
+    servicoRoutes = require('./routes/servicoRoutes'),
+
     db = require('./services/Database')
 
 
@@ -19,9 +23,13 @@ var corsOptions = {
 }
 
 app.use(cors(corsOptions))
+//rotas publicas
 app.use(authRoutes)//rota de login
 app.use(authVerify)//valida o token
+//rotas autenticadas
 app.use('/usuario', usuarioRoutes)
+app.use('/categoria', categoriaRoutes)
+app.use('/servico', servicoRoutes)
 
 
 const port = process.env.SERVER_PORT || 3000;

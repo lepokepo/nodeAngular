@@ -6,23 +6,29 @@ import { AppRoutingModule } from './app-routing.module';
 
 //MODULES
 import { UsuarioModule } from './usuario/usuario.module';
+import { CategoriaModule } from './categoria/categoria.module';
 
 //COMPONENTS
 import { AppComponent } from './app.component';
-import { UserHomeComponent } from './user-home/user-home.component';
+import { PrestadorModule } from './prestador/prestador.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserHomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    CategoriaModule,
     UsuarioModule,
-    RouterModule
+    PrestadorModule,
+    RouterModule,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+
+}

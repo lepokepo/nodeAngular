@@ -1,7 +1,32 @@
-/* #c3272f vermeio */
+
 
 label {
     font-size: medium;
+    color: #252525;
+}
+
+span {
+    color: #505050;
+}
+
+.cardi {
+    border: 2px solid #330000;
+    border-radius: 5px;
+    margin: 0.4%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+}
+
+.cardi:hover {
+    transition: 0.2s;
+    background-color: #ffffff;
+}
+
+.bode {
+    background-color: #a0a0a03d;
+    border: 2px solid #330000;
+    border-radius: 5px;
 }
 
 input {
@@ -12,12 +37,19 @@ input {
 }
 
 .htmlVazio {
-    margin-top: 45%;
-    margin-bottom: 35%;
+    margin-top: 30%;
+    margin-bottom: 30%;
+    text-align: center;
 }
 
 .center {
-    margin-left: 28%;
+    margin-right: 20%;
+    margin-left: 18%;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .button {
@@ -30,11 +62,20 @@ input {
 .button:hover {
     background-color: #c3272f !important;
     transition: 0.2s;
-    border: 1px solid #330000;
+}
+
+.topp {
+    text-align: center;
+    border: 2px solid #330000;
+    border-radius: 5px;
+    margin-top: 7%;
+    background-color: #ffffff;
 }
 
 
+
 /* caixinhas */
+
 .erroBox {
     background-color: #c3272f;
     color: #ffffff;
@@ -55,7 +96,7 @@ input {
     text-align: center;
 }
 
-.notifica{
+.notifica {
     border-radius: 5px;
     background-color: #6e6e6e;
     margin-left: 5%;

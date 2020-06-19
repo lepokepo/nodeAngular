@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-
-
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -10,12 +8,13 @@ import { Router } from '@angular/router';
 })
 export class UsuarioService {
 
-  constructor(private router: Router) {
-  }
+  private userFonte = new BehaviorSubject('default message - USER');
+  user_id = this.userFonte.asObservable();
 
-  getItens() {
-    return ['item1', 'item2', 'item3', 'item4']
-  }
+  constructor() { }
 
+  setUserId(user_id: string) {
+    this.userFonte.next(user_id.toString())
+  }
 
 }

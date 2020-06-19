@@ -1,26 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+//HOME
 import { HomeComponent } from './home/home.component';
-import { UserLoginComponent } from './usuario/user-login/user-login.component';
-import { UserRegisterComponent } from './usuario/user-register/user-register.component';
-import { UserListComponent } from './usuario/user-list/user-list.component';
-import { UserHomeComponent } from './usuario/user-home/user-home.component';
-
+import { UsuarioModule } from './usuario/usuario.module';
+import { CategoriaModule } from './categoria/categoria.module';
+import { PrestadorModule } from './prestador/prestador.module';
+import { ServicoModule } from './servico/servico.module';
 
 const routes: Routes = [
+  //ROTAS GENERICAS
   { path: '', component: HomeComponent },
-  //ROTAS USER
-  { path: 'usuario/user-list', component: UserListComponent },
-  { path: 'usuario/user-home', component: UserHomeComponent },
-  { path: 'usuario/user-login', component: UserLoginComponent },
-  { path: 'usuario/user-register', component: UserRegisterComponent },
+  { path: '**', redirectTo: '' },
 
-  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    CategoriaModule,
+    PrestadorModule,
+    UsuarioModule,
+    ServicoModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
