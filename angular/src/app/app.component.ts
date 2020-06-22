@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token')
-    this.router.navigate(['/'])
+    this.router.navigate(['/login'])
   }
 
   ngOnInit() {
