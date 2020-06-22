@@ -40,7 +40,7 @@ export class UserLoginComponent implements OnInit {
 
         let roles = data.data.usuario.roles
         localStorage.setItem('token', data.data.token)
-        
+
         if (roles.includes('prestador')) {
           this.router.navigate(['/prestador/todo-list'])
         } else if (roles.includes('adm')) {
@@ -48,8 +48,6 @@ export class UserLoginComponent implements OnInit {
         } else {
           this.router.navigate(['/categoria/lista'])
         }
-
-
       }).catch((error) => {
 
         this.erro = 'Usuário não encontrado'
