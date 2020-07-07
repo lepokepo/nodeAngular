@@ -1,0 +1,35 @@
+<div style="padding: 5%;">
+    <div>
+        <div class="row" style="margin-left: 0.5%;">
+            <div>
+                <label class="title">Serviços Finalizados</label><br>
+                <span>por favor, avalie o trabalho de seu prestador</span>
+            </div>
+            <div style="overflow: auto;" *ngIf="erro" class="erroBox">
+                {{ erro }}
+            </div>
+            <div class="col"></div>
+        </div>
+        <div style="margin-top: 5%;" #lista>
+            <div *ngFor="let servico of servicos" class="cardi">
+                <div>
+                    <div class="prest">
+                        <label style="font-weight: bold;" class="row">{{servico.titulo}}</label><br>
+                        <span class="row"><span style="font-weight: bold;">Local: </span> {{servico.local}}</span>
+                        <span class="row"><span style="font-weight: bold;">Data Solicitada:
+                            </span>{{servico.req_date_fmt}}</span>
+                        <span class="row"><span style="font-weight: bold;">Descrição:
+                            </span>{{servico.descricao}}</span>
+                        <!-- <span>{{servico.req_date_fmt}}</span>
+                        <span>{{servico.req_date_fmt}}</span> -->
+                    </div>
+                    <div>
+                        <input type="number" max=5 min=1 (keyup)="keyup($event)" placeholder="Nota: 1 - 5"
+                            id="{{servico._id}}">
+                        <button class="button btn accept" (click)="avalia(servico._id)">Avaliar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

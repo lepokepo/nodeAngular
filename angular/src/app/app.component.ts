@@ -1,7 +1,5 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { Router } from '@angular/router';
-import Axios from 'axios';
-import http from 'src/app/http.service'
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,30 +9,48 @@ import http from 'src/app/http.service'
 export class AppComponent implements OnInit {
   title = 'angularNode';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        this.checkLog()
+      }
+    });
+  }
+
+  username: String
+
+
   logged: boolean;
 
+  prest: boolean;
+  user: boolean;
+  adm: boolean;
+
   checkLog() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') || localStorage.getItem('roles') || localStorage.getItem('user')) {
+      let roles = localStorage.getItem('roles')
 
-      // http({
-      //   method: 'POST',
-      //   url: '/login',
-      // }).then((data) => {
-      //   console.log(data.data);
-
-      // }).catch((error) => {
-      //   console.log(error.error);
-
-      // })
-
+      if (roles.includes('prestador')) {
+        console.log('prestador - log');
+        this.prest = true
+      }
+      if (roles.includes('adm')) {
+        console.log('adm - log');
+        this.adm = true
+      }
+      if (roles.includes('user')) {
+        console.log('user - log');
+        this.user = true
+      }
+      let fst = localStorage.getItem('user').split(' ')
+      this.username = fst[0]
       this.logged = true
     }
   }
 
   logout() {
-    localStorage.removeItem('token')
-    this.router.navigate(['/login'])
+    localStorage.clear()
+    this.router.navigate(['/'])
   }
 
   ngOnInit() {

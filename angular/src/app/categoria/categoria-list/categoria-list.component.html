@@ -1,4 +1,4 @@
-<div>
+<div style="padding: 5%;">
     <div>
         <div class="row">
             <div>
@@ -6,10 +6,13 @@
                 <span>e seu número de profissionais</span>
             </div>
             <div class="col"></div>
-            <div class="col-1" style="float: right;margin-right: 2%;margin-top: 2%;">
-                <a href="categoria/nova" style="font-size: 15px;" class="btn button"> +
-                </a>
+            <div *ngIf="adm;">
+                <div class="col-1" style="margin-top: 2%;">
+                    <a href="categoria/nova" style="font-size: 15px;" class="btn button"> <i class="fas fa-plus"></i>
+                    </a>
+                </div>
             </div>
+
             <div style="overflow: auto;" *ngIf="erro" class="erroBox">
                 {{ erro }}
             </div>

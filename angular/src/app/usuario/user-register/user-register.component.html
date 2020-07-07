@@ -1,31 +1,28 @@
 <div>
 
     <div class="topp">
-        <label style="font-size: large;">Cadastro de</label><br>
-        <label style="font-size: larger;">Usuário</label>
+        <label style="font-size: 25px;">Registro de</label><br>
+        <label style="font-size: 25px;">Usuario</label>
     </div>
 
     <div>
         <div class="htmlVazio">
             <label for="nome">Nome de Usuário</label><br>
-            <input type="text" #nome><br>
+            <input type="text" #nome size="40"><br>
 
             <label for="email">Email</label><br>
-            <input type="email" #email required><br>
+            <input type="email" #email required size="40"><br>
 
             <label for="senha">Senha</label><br>
-            <input type="password" #senha><br>
+            <input type="password" #senha size="40"><br>
 
             <label for="senhaConfirm">Confirmar Senha</label><br>
-            <input type="password" #senhaConfirm><br>
+            <input type="password" #senhaConfirm size="40"><br>
 
             <button class="btn button center" (click)="register()">Cadastrar</button>
         </div>
     </div>
     <div style="overflow: auto;" *ngIf="erro" class="erroBox">
         {{ erro }}
-    </div>
-    <div style="overflow: auto;" *ngIf="msg" class="certoBox">
-        {{ msg }}
     </div>
 </div>

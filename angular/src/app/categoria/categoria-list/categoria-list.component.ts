@@ -13,6 +13,7 @@ export class CategoriaListComponent implements OnInit {
 
   categorias: Array<any>
   erro: String
+  adm: boolean
 
   constructor(private router: Router, private cat: CategoriaService) {
     http({
@@ -24,6 +25,13 @@ export class CategoriaListComponent implements OnInit {
       this.erro = error.error
     })
 
+    let roles = localStorage.getItem('roles')
+    if (roles) {
+      if (roles.includes('adm')) {
+        this.adm = true
+
+      }
+    }
   }
 
   send(c) {

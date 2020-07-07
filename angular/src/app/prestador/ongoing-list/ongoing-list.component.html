@@ -1,0 +1,27 @@
+<div style="padding: 5%;">
+    <div>
+        <div style="margin-left: 0.5%;">
+            <div>
+                <label class="title">Serviços em Andamento</label><br>
+            </div>
+            <div style="overflow: auto;" *ngIf="erro" class="erroBox">
+                {{ erro }}
+            </div>
+        </div>
+        <div style="margin-top: 5%;" #lista>
+            <div *ngFor="let servico of servicos" class="cardi">
+                <div class="prest">
+                    <label class="row">{{servico.titulo}}</label>
+                    <span class="row"><strong>Local: </strong> {{servico.local}}</span>
+                    <span class="row"><strong>Usuario: </strong> {{servico.user_id}}</span>
+                    <span class="row"><strong>Solicitado em:</strong>{{servico.req_date_fmt}}</span>
+                    <span class="row"> <strong>Descrição: </strong>{{servico.descricao}}</span>
+
+                    <input type="number" (keyup)="keyup($event)" id="{{servico._id}}">
+                    <button style="float: right;" class="button btn accept"
+                        (click)="finaliza(servico._id)">Finalizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

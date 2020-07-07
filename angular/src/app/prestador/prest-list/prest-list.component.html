@@ -1,8 +1,9 @@
-<div>
+<div style="padding: 5%;">
     <div>
-        <div class="row">
+        <div class="row" style="margin-left: 0.5%">
             <div>
                 <label class="title">Lista de Prestadores</label><br>
+                <span>e seus detalhes </span>
             </div>
             <div style="overflow: auto;" *ngIf="erro" class="erroBox">
                 {{ erro }}
@@ -11,11 +12,21 @@
         </div>
         <div style="margin-top: 5%;" #lista>
             <div *ngFor="let prestador of prestadores" class="cardi">
-                <div class="row" (click)="sendPrestId(prestador._id)">
-                    <label>{{prestador.nome}}</label>
-                    <span>{{prestador.servicos}}</span>
-                    <span>{{prestador.cnpj}}</span>
-                    <span>{{prestador.email}}</span>
+                <div class="prest">
+                    <label class="row"> {{prestador.nome}}
+                        <span *ngIf="prestador.avaliacao >= 1" class="fa fa-star checked"></span>
+                        <span *ngIf="prestador.avaliacao >= 2" class="fa fa-star checked"></span>
+                        <span *ngIf="prestador.avaliacao >= 3" class="fa fa-star checked"></span>
+                        <span *ngIf="prestador.avaliacao >= 4" class="fa fa-star checked"></span>
+                        <span *ngIf="prestador.avaliacao >= 5" class="fa fa-star checked"></span>
+                    </label>
+                    <span class="row" style="text-align: left;"><span style="font-weight: bold;">Serviços: </span>
+                        {{prestador.servicos}}</span>
+                    <span class="row"><span style="font-weight: bold;">CNPJ: </span> {{prestador.cnpj}}</span>
+                    <span class="row"><span style="font-weight: bold;">Email: </span> {{prestador.email}}</span>
+                    <button *ngIf="user" class="btn button" (click)="sendPrestId(prestador._id)"><i
+                            class="fas fa-file-alt"></i>
+                        Contratar</button>
                 </div>
             </div>
         </div>

@@ -40,6 +40,8 @@ export class UserLoginComponent implements OnInit {
 
         let roles = data.data.usuario.roles
         localStorage.setItem('token', data.data.token)
+        localStorage.setItem('roles', data.data.usuario.roles)
+        localStorage.setItem('user', data.data.usuario.nome)
 
         if (roles.includes('prestador')) {
           this.router.navigate(['/prestador/todo-list'])

@@ -34,6 +34,7 @@ export class ServRegisterComponent implements OnInit {
 
     if (titulo && local && descricao) {
       http({
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
         method: 'POST',
         url: '/servico/novo',
         data: {
