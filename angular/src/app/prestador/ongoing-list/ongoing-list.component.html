@@ -13,11 +13,12 @@
                 <div class="prest">
                     <label class="row">{{servico.titulo}}</label>
                     <span class="row"><strong>Local: </strong> {{servico.local}}</span>
-                    <span class="row"><strong>Usuario: </strong> {{servico.user_id}}</span>
-                    <span class="row"><strong>Solicitado em:</strong>{{servico.req_date_fmt}}</span>
+                    <!-- <span class="row"><strong>Usuario: </strong> {{servico.user_id}}</span> -->
+                    <span class="row"><strong>Solicitado em:</strong>{{servico.req_date}}</span>
+                    <span class="row"><strong>Aceito em:</strong>{{servico.accept_date}}</span>
                     <span class="row"> <strong>Descrição: </strong>{{servico.descricao}}</span>
 
-                    <input type="number" (keyup)="keyup($event)" id="{{servico._id}}">
+                    <input type="number" placeholder="0.00" (keyup)="keyup($event)" id="{{servico._id}}">
                     <button style="float: right;" class="button btn accept"
                         (click)="finaliza(servico._id)">Finalizar</button>
                 </div>

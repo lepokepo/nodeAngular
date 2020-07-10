@@ -11,6 +11,7 @@ import { CategoriaModule } from './categoria/categoria.module';
 //COMPONENTS
 import { AppComponent } from './app.component';
 import { PrestadorModule } from './prestador/prestador.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PrestadorModule } from './prestador/prestador.module';
     UsuarioModule,
     PrestadorModule,
     RouterModule,
+    NgbModule,
   ],
   bootstrap: [AppComponent]
 })

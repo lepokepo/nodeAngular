@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import http from 'src/app/http.service'
+import { AppService } from 'src/app/app.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,13 +14,11 @@ import http from 'src/app/http.service'
 export class PrestRegisterComponent implements OnInit {
   //declaracao de variavel que vai usar no front
   categorias: Array<any>
-  erro: String
-  msg: String
 
   servicos: Array<String> = []
 
   // private formBuilder: FormBuilder
-  constructor() {
+  constructor(private appServ: AppService, private router: Router) {
     //vai pega a lista de categorias q vai fica 
     http({
       url: '/lista-cat',
@@ -26,7 +26,7 @@ export class PrestRegisterComponent implements OnInit {
     }).then((data) => {
       this.categorias = data.data
     }).catch((error) => {
-      this.erro = error.error
+      this.appServ.callSb(error.error, true)
     })
   }
   // declaracao dos input html
@@ -74,23 +74,23 @@ export class PrestRegisterComponent implements OnInit {
           }).then((data) => {
             console.log(data);
 
-            this.msg = 'Prestador cadastrado!'
-            this.erro = null
-
+            this.appServ.callSb('Prestador cadastrado com sucesso', false)
+            this.router.navigate(['/'])
           }).catch((error) => {
             console.log(error);
-            this.erro = 'moio'
-            this.msg = null
+            if (error.status === 401) { this.appServ.callSb('Sem permissão para realizar a operação', true) }
+            if (error.status === 403) { this.appServ.callSb('Sem direito para realizar a operação', true) }
+            else this.appServ.callSb('Ocorreu um erro interno :`(', true)
           })
         } else {
-          this.erro = 'Selecione 1 servico'
+          this.appServ.callSb('Selecione ao menos um serviço', true)
         }
       } else {
-        this.erro = 'As senhas não são iguais'
+        this.appServ.callSb('As senhas não são iguais', true)
       }
 
     } else {
-      this.erro = 'Enche o tanqe'
+      this.appServ.callSb('Preencha os campos corretamente', true)
     }
 
   }

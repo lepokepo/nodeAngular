@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import http from 'src/app/http.service'
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-user-review',
@@ -12,7 +13,7 @@ export class UserReviewComponent implements OnInit {
   servicos: Array<any> = []
   erro: String
 
-  constructor() {
+  constructor(private appServ: AppService) {
     http({
       headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
       url: 'servico/avalia-list',
@@ -53,10 +54,12 @@ export class UserReviewComponent implements OnInit {
     } else {
       if (s.avaliacao) {
         if (s.avaliacao > 5 || s.avaliacao < 1) {
-          this.erro = 'Nota Inválida'
+          this.appServ.callSb('Nota inválida', true)
+
         }
       } else {
-        this.erro = 'Diga o quanto gostou do serviço'
+        this.appServ.callSb('Diga o quanto gostou do serviço', true)
+
       }
     }
   }

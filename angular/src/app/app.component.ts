@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -8,8 +8,11 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'angularNode';
+  @ViewChild('snackbar') snackbar
 
   constructor(private router: Router) {
+
+
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.checkLog()

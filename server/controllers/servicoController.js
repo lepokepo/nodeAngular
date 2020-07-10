@@ -11,7 +11,9 @@ exports.listarAvaliacao = (req, res, next) => {
             let lista = []
             for (let index = 0; index < listaServ.length; index++) {
                 let s = listaServ[index].toObject();
-                s.req_date_fmt = moment(s.req_date.toString()).format('LLL')
+                if (s.req_date) s.req_date = moment(s.req_date.toString()).format('LLL')
+                if (s.done_date) s.done_date = moment(s.done_date.toString()).format('LLL')
+                if (s.accept_date) s.accept_date = moment(s.accept_date.toString()).format('LLL')
                 lista.push(s)
             }
             console.log(lista);
@@ -32,7 +34,9 @@ exports.listarTodo = (req, res, next) => {
             let lista = []
             for (let index = 0; index < listaServ.length; index++) {
                 let s = listaServ[index].toObject();
-                s.req_date_fmt = moment(s.req_date.toString()).format('LLL')
+                if (s.req_date) s.req_date = moment(s.req_date.toString()).format('LLL')
+                if (s.done_date) s.done_date = moment(s.done_date.toString()).format('LLL')
+                if (s.accept_date) s.accept_date = moment(s.accept_date.toString()).format('LLL')
                 lista.push(s)
             }
             console.log(lista);
@@ -53,7 +57,9 @@ exports.listarOngoing = (req, res, next) => {
             let lista = []
             for (let index = 0; index < listaServ.length; index++) {
                 let s = listaServ[index].toObject();
-                s.req_date_fmt = moment(s.req_date.toString()).format('LLL')
+                if (s.req_date) s.req_date = moment(s.req_date.toString()).format('LLL')
+                if (s.done_date) s.done_date = moment(s.done_date.toString()).format('LLL')
+                if (s.accept_date) s.accept_date = moment(s.accept_date.toString()).format('LLL')
                 lista.push(s)
             }
             console.log(lista);

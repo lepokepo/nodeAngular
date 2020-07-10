@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<!-- Snackbar -->
+<div id="snackbar">Some text some message..</div>
+
 <!-- Navbar -->
 <div *ngIf="logged; else elseBlock" class="toolbar" role="banner">
   <div class="toolbar" role="banner">
@@ -23,20 +26,28 @@
       <div class="navbar-nav">
         <!-- Padrão de toda Navbar -->
         <a class="nav-item nav-link text-white" routerLink="/"><i class="fas fa-home"></i></a>
-        <a class="nav-item nav-link text-white" routerLink="categoria/lista"><i class="fas fa-bars"></i> Lista de
-          Categorias</a>
-        <a class="nav-item nav-link text-white" routerLink="prestador/lista"><i class="fas fa-bars"></i> Lista de
-          Prestadores</a>
+        <!-- Listas -->
+        <div type="button" class="nav-item nav-link text-white" data-toggle="dropdown">
+          <i class="fas fa-list"></i>
+          Listas
+        </div>
+        <div style="margin-left: 16%;" class="dropdown-menu">
+          <a class="nav-item nav-link text-red" routerLink="categoria/lista"><i class="far fa-circle">
+            </i>
+            Categorias</a>
+          <a class="nav-item nav-link text-red" routerLink="prestador/lista"><i class="far fa-circle">
+            </i>
+            Prestadores</a>
+        </div>
 
         <!-- Comandos para Adm -->
 
         <!-- Comandos para Prestador -->
-        <a *ngIf="prest" class="nav-item nav-link text-white" routerLink="prestador/todo-list"><i
-            class="far fa-check-circle"></i> Serviços Disponíveis</a>
+        <a *ngIf="prest" class="nav-item nav-link text-white" routerLink="prestador/todo-list">
+          <i class="fas fa-clock"></i> Serviços Disponíveis</a>
         <a *ngIf="prest" class="nav-item nav-link text-white" routerLink="prestador/ongoing-list"><i
             class="fas fa-angle-double-right"></i> Serviços em
           Andamento</a>
-
 
         <!-- Comandos para Usuario -->
         <a *ngIf="user" class="nav-item nav-link text-white" routerLink="usuario/avalia-list"><i
@@ -47,15 +58,16 @@
     </nav>
 
     <div class="spacer"></div>
-
-    <div type="button" class="dropdown-toggle" data-toggle="dropdown" style="margin-right: 1%;">
-      <i class="fas fa-user"></i>
-      {{username}}
+    <div style="margin-right: 1%;">
+      <div type="button" class="dropdown-toggle" data-toggle="dropdown" style="margin-right: 1%;">
+        <i class="fas fa-user"></i>
+        {{username}}
+      </div>
+      <ul class="dropdown-menu">
+        <a class="nav-item nav-link text-danger" href="" (click)="logout()"><i class="fas fa-sign-out-alt"></i>
+          Logout</a>
+      </ul>
     </div>
-    <ul class="dropdown-menu">
-      <a class="nav-item nav-link text-danger" href="" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
-    </ul>
-
   </div>
 </div>
 
@@ -66,11 +78,42 @@
       src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
     <nav class="navbar navbar-expand navbar-dark ">
       <div class="navbar-nav">
+        <!-- Home -->
         <a class="nav-item nav-link text-white" routerLink="/"><i class="fas fa-home"></i></a>
-        <a class="nav-item nav-link text-white" routerLink="usuario/user-login">Login</a>
-        <a class="nav-item nav-link text-white" routerLink="usuario/novo">Registro de Usuario</a>
-        <a class="nav-item nav-link text-white" routerLink="prestador/novo">Registro de Prestador</a>
-        <a class="nav-item nav-link text-white" routerLink="categoria/lista">Lista de Categorias</a>
+
+        <!-- Listas -->
+        <div type="button" class="nav-item nav-link text-white" data-toggle="dropdown">
+          <i class="fas fa-list"></i>
+          Listas
+        </div>
+        <div style="margin-left: 16%;" class="dropdown-menu">
+          <a class="nav-item nav-link text-red" routerLink="categoria/lista"><i class="far fa-circle">
+            </i> 
+            Categorias</a>
+          <a class="nav-item nav-link text-red" routerLink="prestador/lista"><i class="far fa-circle">
+            </i> 
+            Prestadores</a>
+        </div>
+
+      </div>
+
+      <!-- Os dropdowns não podem ter a mesma div pai, senao somente a primeira vai ativar-->
+      <div class="navbar-nav">
+        <!-- Cadastros -->
+        <div type="button" class="nav-item nav-link text-white" data-toggle="dropdown">
+          <i class="fas fa-address-card"></i>
+          Cadastros
+        </div>
+        <div style="margin-left: 38%;" class="dropdown-menu">
+          <a class=" nav-item nav-link text-red" routerLink="usuario/novo"><i class="far fa-circle"> </i>
+            Usuario</a>
+          <a class=" nav-item nav-link text-red" routerLink="prestador/novo"><i class="far fa-circle"> </i>
+            Prestador</a>
+        </div>
+
+        <!-- Login -->
+        <a class="nav-item nav-link text-white" routerLink="usuario/user-login"><i class="fas fa-sign-in-alt"></i>
+          Login</a>
       </div>
     </nav>
     <div class="spacer"></div>

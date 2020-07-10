@@ -1,8 +1,8 @@
 //axios
 import axios from 'axios'
 const configuredAxios = axios.create({
-  baseURL: 'http://localhost:3030/',
-  headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+  headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
+  baseURL: 'http://localhost:3030/'
 })
 
 export default configuredAxios

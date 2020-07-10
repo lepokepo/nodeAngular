@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 
 import http from 'src/app/http.service'
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-ongoing-list',
@@ -12,9 +13,11 @@ export class OngoingListComponent implements OnInit {
 
   servicos: Array<any> = []
   erro: String
-  constructor() {
+
+  constructor(private appServ: AppService) {
 
     http({
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
       url: '/servico/ongoing-list',
       method: 'GET'
     }).then((data) => {
@@ -23,6 +26,9 @@ export class OngoingListComponent implements OnInit {
       if (this.servicos.length == 0) {
         this.erro = 'Nenhum serviço encontrado'
       }
+    }).catch((erro) => {
+      if (erro.status === 401) { this.appServ.callSb('Sem permissão para realizar a operação', true) }
+      if (erro.status === 403) { this.appServ.callSb('Sem direito para realizar a operação', true) }
     })
 
   }
@@ -33,6 +39,7 @@ export class OngoingListComponent implements OnInit {
 
     if (s.valor) {
       http({
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
         url: 'servico/finaliza',
         method: 'PATCH',
         data: {
@@ -49,19 +56,19 @@ export class OngoingListComponent implements OnInit {
         }
       }).catch((err) => {
         console.log(err);
+        if (err.status === 401) { this.appServ.callSb('Sem permissão para realizar a operação', true) }
+        if (err.status === 403) { this.appServ.callSb('Sem direito para realizar a operação', true) }
       })
     } else {
-      this.erro = 'Adicione um valor'
+      this.appServ.callSb('Por favor informe um valor', true)
     }
   }
 
   keyup(event) {
     // event.target.value  event.target.id
-
     let s = this.servicos.find(s => s._id == event.target.id) // vai achar o servico pelo id 
     let i = this.servicos.indexOf(s)//vai pegar a posicao do servico
     this.servicos[i].valor = event.target.value
-
   }
 
   ngOnInit(): void {

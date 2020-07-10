@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 
 import http from 'src/app/http.service'
 import { UsuarioService } from '../usuario.service';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-user-login',
@@ -16,12 +17,9 @@ export class UserLoginComponent implements OnInit {
   @ViewChild('email') email: ElementRef;
   @ViewChild('senha') senha: ElementRef;
 
-  //esse carinha vê se o servidor respondeu ou se deu erro
-  erro: String
-
   //variaveis fora do constructor, sendo chamada com this.NOMEVAR
   //essa classe deixa fazer post get eos caraio
-  constructor(private router: Router, private userService: UsuarioService) { }
+  constructor(private router: Router, private appServ: AppService) { }
 
   login() {
     var email: String = this.email.nativeElement.value,
@@ -52,11 +50,11 @@ export class UserLoginComponent implements OnInit {
         }
       }).catch((error) => {
 
-        this.erro = 'Usuário não encontrado'
+        this.appServ.callSb('Usuário não encontrado', true)
 
       })
     } else {
-      this.erro = 'Insira seus dados'
+      this.appServ.callSb('Preencha os campos corretamente', true)
     }
   }
 

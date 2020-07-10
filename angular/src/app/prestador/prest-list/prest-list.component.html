@@ -11,7 +11,7 @@
             <div class="col"></div>
         </div>
         <div style="margin-top: 5%;" #lista>
-            <div *ngFor="let prestador of prestadores" class="cardi">
+            <div *ngFor="let prestador of prestadores" style="min-width: 20%;" class="cardi">
                 <div class="prest">
                     <label class="row"> {{prestador.nome}}
                         <span *ngIf="prestador.avaliacao >= 1" class="fa fa-star checked"></span>

@@ -18,7 +18,7 @@
             </div>
         </div>
         <div style="margin-top: 5%;" class="row" #lista>
-            <a *ngFor="let categoria of categorias" (click)="send(categoria.categoria)" class="col cardi"
+            <a *ngFor="let categoria of categorias" (click)="send(categoria.categoria)" class="col-2 cardi"
                 routerLink="/prestador/lista" routerLinkActive="active">
                 <label>{{categoria.categoria}}</label><br>
                 <span>{{categoria.quantidade}}</span>

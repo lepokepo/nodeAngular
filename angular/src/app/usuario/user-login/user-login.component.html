@@ -5,16 +5,12 @@
         </div>
         <div class="htmlVazio">
             <label for="email">Email</label><br>
-            <input type="email" value="adm@adm.com" #email><br>
+            <input type="email" value="adm@adm.com" size="40" #email><br>
 
             <label for="senha">Senha</label><br>
-            <input type="password" value="1233321" #senha><br>
+            <input type="password" value="1233321" size="40" #senha><br>
 
-            <button class="btn button center" (click)="login()">Salvar</button>
+            <button class="btn button center" (click)="login()">Login</button>
         </div>
     </div>
-</div>
-
-<div *ngIf="erro" class="erroBox">
-    {{ erro }}
 </div>

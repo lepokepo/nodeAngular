@@ -15,12 +15,12 @@
                     <label class="row">{{servico.titulo}}</label>
                     <span class="row"> <span style="font-weight: bold;">Local:</span> {{servico.local}}</span>
                     <span class="row"> <span style="font-weight: bold;">Data
-                            Solicitada:</span>{{servico.req_date_fmt}}</span>
+                            Solicitada:</span>{{servico.req_date}}</span>
                     <span class="row"> <span style="font-weight: bold;">Descrição:</span>{{servico.descricao}}</span>
                 </div>
                 <div>
                     <button class="button btn accept" (click)="aceita(servico._id)">Aceitar</button>
-                    <button class="button btn" (click)="recusa(servico._id)">Recusar</button>
+                    <button style="margin-left: 10%;" class="button btn" (click)="recusa(servico._id)">Recusar</button>
                 </div>
             </div>
         </div>

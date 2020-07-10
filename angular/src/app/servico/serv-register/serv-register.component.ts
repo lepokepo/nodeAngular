@@ -3,6 +3,7 @@ import { PrestadorService } from 'src/app/prestador/prestador.service';
 import { Router } from '@angular/router';
 
 import http from 'src/app/http.service'
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-serv-register',
@@ -15,7 +16,7 @@ export class ServRegisterComponent implements OnInit {
   prest_id: String
 
   constructor(private prestService: PrestadorService,
-    private router: Router) {
+    private router: Router, private appServ: AppService) {
 
     this.prestService.prest_id.subscribe(prest_id => this.prest_id = prest_id)
 
@@ -45,12 +46,15 @@ export class ServRegisterComponent implements OnInit {
         }
       }).then((data) => {
         console.log(data.data);
+        this.appServ.callSb('Serviço solicitado', false)
         this.router.navigate(['/'])
       }).catch((error) => {
-        this.erro = 'Um erro ocorreu, por favor tente mais tarde'
+        if (error.status === 401) { this.appServ.callSb('Sem permissão para realizar a operação', true) }
+        if (error.status === 403) { this.appServ.callSb('Sem direito para realizar a operação', true) }
+        else this.appServ.callSb('Não foi possível solicitar o serviço', true)
       })
     } else {
-      this.erro = 'Preencha todos os campos'
+      this.appServ.callSb('Preencha todos os campos', true)
     }
 
   }

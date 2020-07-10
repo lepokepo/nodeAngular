@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import http from 'src/app/http.service'
+import { AppService } from 'src/app/app.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
@@ -14,7 +16,7 @@ export class UserRegisterComponent implements OnInit {
   @ViewChild('senhaConfirm') senhaConfirm
   @ViewChild('nome') nome
 
-  constructor() { }
+  constructor(private appServ: AppService, private router: Router) { }
 
   erro: String
   msg: String
@@ -38,19 +40,20 @@ export class UserRegisterComponent implements OnInit {
             roles: ['user']
           }
         }).then((data) => {
-          this.msg = 'Usuário cadastrado!'
-          this.erro = null
+          this.router.navigate(['/'])
+          this.appServ.callSb('Usuário cadastrado', false)
         }).catch((error) => {
           console.log(error);
-          this.erro = 'moio'
-          this.msg = null
+          if (error.status === 401) { this.appServ.callSb('Sem permissão para realizar a operação', true) }
+          if (error.status === 403) { this.appServ.callSb('Sem direito para realizar a operação', true) }
+          else this.appServ.callSb('Usuário não encontrado', true)
         })
 
       } else {
-        this.erro = 'As senhas não são iguais'
+        this.appServ.callSb('As senhas não são iguais', true)
       }
     } else {
-      this.erro = 'Por favor preencha todos os campos'
+      this.appServ.callSb('Preencha os campos corretamente', true)
     }
 
   }
