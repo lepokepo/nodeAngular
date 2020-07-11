@@ -27,7 +27,7 @@ exports.listarAvaliacao = (req, res, next) => {
 //listagem simples
 exports.listarTodo = (req, res, next) => {
     let prest_id = res.locals.usuario._id
-    Servico.find({ prest_id, accept_date: null }, (err, listaServ) => {
+    Servico.find({ prest_id, accept_date: null, done_date: null }, (err, listaServ) => {
         if (err) return res.status(500).send({ msg: 'moio' })
 
         if (listaServ) {

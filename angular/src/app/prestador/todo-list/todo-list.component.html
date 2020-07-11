@@ -11,12 +11,12 @@
         </div>
         <div style="margin-top: 5%;" #lista>
             <div *ngFor="let servico of servicos" class="cardi">
-                <div class="prest">
+                <div class="prest f-left">
                     <label class="row">{{servico.titulo}}</label>
                     <span class="row"> <span style="font-weight: bold;">Local:</span> {{servico.local}}</span>
                     <span class="row"> <span style="font-weight: bold;">Data
                             Solicitada:</span>{{servico.req_date}}</span>
-                    <span class="row"> <span style="font-weight: bold;">Descrição:</span>{{servico.descricao}}</span>
+                    <div class="row"> <span style="font-weight: bold;">Descrição:</span>{{servico.descricao}}</div>
                 </div>
                 <div>
                     <button class="button btn accept" (click)="aceita(servico._id)">Aceitar</button>

@@ -15,9 +15,15 @@
                 <div>
                     <div class="prest">
                         <label style="font-weight: bold;" class="row">{{servico.titulo}}</label><br>
+                        <span class="row"><span style="font-weight: bold;">Valor:
+                            </span>R${{servico.valor}}</span>
                         <span class="row"><span style="font-weight: bold;">Local: </span> {{servico.local}}</span>
-                        <span class="row"><span style="font-weight: bold;">Data Solicitada:
-                            </span>{{servico.req_date_fmt}}</span>
+                        <span class="row"><span style="font-weight: bold;">Solicitado em:
+                            </span>{{servico.req_date}}</span>
+                        <span class="row"><span style="font-weight: bold;">Aceito em:
+                            </span>{{servico.accept_date}}</span>
+                        <span class="row"><span style="font-weight: bold;">Finalizado em:
+                            </span>{{servico.done_date}}</span>
                         <span class="row"><span style="font-weight: bold;">Descrição:
                             </span>{{servico.descricao}}</span>
                         <!-- <span>{{servico.req_date_fmt}}</span>
